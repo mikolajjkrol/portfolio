@@ -26,7 +26,7 @@ export default function Projects() {
                             view === v ? 'text-ink' : 'text-muted'
                         }`}
                     >
-                        {v}
+                        {v === 'Tabela' ? '☰' : '▦'}&nbsp;&nbsp;{v}
                     </button>
                 ))}
             </div>
@@ -51,19 +51,25 @@ export default function Projects() {
                     ))}
                 </div>
             ) : (
-                <div className="grid grid-cols-[repeat(auto-fit,minmax(min(280px,100%),1fr))] gap-x-8 gap-y-12">
+                // Ruled grid like the one on the Skills page, kept to the content column.
+                <ul className="m-0 grid list-none grid-cols-1 border-t border-l border-rule p-0 sm:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project) => (
-                        <Link key={project.slug} to={projectPath(project)} className="group flex flex-col gap-4 no-underline">
-                            <ProjectImage project={project} caption={false} plain />
-                            <div className="flex flex-col gap-1">
-                                <h3 className="m-0 font-serif text-xl font-medium break-words text-ink transition-colors duration-200 group-hover:text-accent">
-                                    {project.title}
-                                </h3>
-                                <span className="text-sm text-muted">{project.kind}</span>
-                            </div>
-                        </Link>
+                        <li key={project.slug} className="border-r border-b border-rule">
+                            <Link to={projectPath(project)} aria-label={project.title} className="group relative block no-underline">
+                                <ProjectImage project={project} caption={false} plain />
+                                {/* Name and description show over the image on hover / keyboard focus. */}
+                                <div className="absolute inset-0 flex flex-col justify-end gap-2 bg-page/90 p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                                    <h3 className="m-0 translate-y-2 font-serif text-xl font-medium text-ink transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0">
+                                        {project.title}
+                                    </h3>
+                                    <p className="m-0 translate-y-2 text-sm leading-[1.6] text-pretty text-muted transition-transform delay-75 duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0">
+                                        {project.summary}
+                                    </p>
+                                </div>
+                            </Link>
+                        </li>
                     ))}
-                </div>
+                </ul>
             )}
         </section>
     )

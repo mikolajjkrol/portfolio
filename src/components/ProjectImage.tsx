@@ -26,7 +26,7 @@ export default function ProjectImage({ project, caption = true, plain = false, c
                 <img src={image} alt={`Zrzut ekranu: ${title}`} loading="lazy" className={`block aspect-[16/10] w-full object-cover object-top ${frame}`} />
             ) : (
                 <div className={`flex aspect-[16/10] flex-col items-center justify-center gap-4 bg-card px-[10%] text-center ${frame}`}>
-                    <span className="font-serif text-[clamp(24px,3vw,36px)] leading-tight text-ink">{title}</span>
+                    <span className={`font-serif leading-tight text-ink ${plain ? 'text-[clamp(20px,2vw,26px)]' : 'text-[clamp(24px,3vw,36px)]'}`}>{title}</span>
                     <span className={`h-0.5 w-10 ${plain ? 'bg-rule' : 'bg-(--project)'}`} />
                 </div>
             )}

@@ -9,7 +9,11 @@ import {
     siGooglecalendar,
     siHtml5,
     siMaplibre,
+    siMariadb,
+    siMysql,
+    siNextdotjs,
     siNetlify,
+    siPhp,
     siPostgresql,
     siPython,
     siReact,
@@ -18,6 +22,7 @@ import {
     siTailwindcss,
     siTypescript,
     siVercel,
+    siXampp,
     type SimpleIcon,
 } from 'simple-icons'
 
@@ -186,22 +191,27 @@ export const projectPath = (p: Project) => `/projects/${p.slug}`
 export const host = (url: string) => new URL(url).host
 
 // Logos come from simple-icons; `color` is the brand colour shown on hover (lightened where the brand is too dark for the page).
-export const technologies: { name: string; category: string; icon?: SimpleIcon; color: string }[] = [
-    { name: 'React', category: 'Frontend', icon: siReact, color: '#61dafb' },
-    { name: 'TypeScript', category: 'Frontend', icon: siTypescript, color: '#3178c6' },
-    { name: 'Tailwind CSS', category: 'Frontend', icon: siTailwindcss, color: '#06b6d4' },
-    { name: 'Redux', category: 'Frontend', icon: siRedux, color: '#9b74d8' },
-    { name: 'HTML', category: 'Frontend', icon: siHtml5, color: '#e34f26' },
-    { name: 'CSS', category: 'Frontend', icon: siCss, color: '#8a5cc7' },
-    { name: 'Supabase', category: 'Backend i dane', icon: siSupabase, color: '#3fcf8e' },
-    { name: 'PostgreSQL', category: 'Backend i dane', icon: siPostgresql, color: '#5b84e8' },
-    { name: 'Python', category: 'Backend i dane', icon: siPython, color: '#4b8bbe' },
-    { name: 'Vercel', category: 'Wdrożenia', icon: siVercel, color: '#ecebe8' },
-    { name: 'Netlify', category: 'Wdrożenia', icon: siNetlify, color: '#00c7b7' },
-    { name: 'Google Calendar API', category: 'Integracje', icon: siGooglecalendar, color: '#4285f4' },
-    { name: 'SMSAPI', category: 'Integracje', color: '#d8c3a5' },
-    { name: 'MapLibre GL JS', category: 'Integracje', icon: siMaplibre, color: '#5b8ad6' },
-    { name: 'Cisco CCNAv7', category: 'Sieci', icon: siCisco, color: '#1ba0d7' },
+export const technologies: { name: string; category: string; icon?: SimpleIcon; color: string; description: string }[] = [
+    { name: 'React', category: 'Frontend', icon: siReact, color: '#61dafb', description: 'Podstawa wszystkiego, co buduję: Calendify, strony dla firm i ta strona.' },
+    { name: 'TypeScript', category: 'Frontend', icon: siTypescript, color: '#3178c6', description: 'Piszę w nim domyślnie. Typy łapią błędy, zanim trafią do klienta.' },
+    { name: 'Tailwind CSS', category: 'Frontend', icon: siTailwindcss, color: '#06b6d4', description: 'Szybkie, spójne stylowanie. W nim powstał Calendify i ta strona.' },
+    { name: 'Next.js', category: 'Frontend', icon: siNextdotjs, color: '#ecebe8', description: 'Strony, które potrzebują renderowania po stronie serwera i dobrego SEO.' },
+    { name: 'Redux', category: 'Frontend', icon: siRedux, color: '#9b74d8', description: 'Zarządzanie stanem w większych aplikacjach z wieloma widokami.' },
+    { name: 'HTML', category: 'Frontend', icon: siHtml5, color: '#e34f26', description: 'Semantyczny kod i dostępność. Strona gabinetu terapeutycznego to czysty HTML.' },
+    { name: 'CSS', category: 'Frontend', icon: siCss, color: '#8a5cc7', description: 'Układy, animacje i responsywność bez zbędnych bibliotek.' },
+    { name: 'Supabase', category: 'Backend i dane', icon: siSupabase, color: '#3fcf8e', description: 'Backend Calendify: PostgreSQL, Edge Functions, webhooki i logowanie OAuth.' },
+    { name: 'PostgreSQL', category: 'Backend i dane', icon: siPostgresql, color: '#5b84e8', description: 'Relacyjne bazy danych, od schematu po zapytania.' },
+    { name: 'Python', category: 'Backend i dane', icon: siPython, color: '#4b8bbe', description: 'Skrypty i przetwarzanie danych, m.in. parser matur z matematyki.' },
+    { name: 'PHP', category: 'Backend i dane', icon: siPhp, color: '#8f93d6', description: 'Logika po stronie serwera w klasycznych aplikacjach webowych, ćwiczona m.in. do egzaminu INF.03.' },
+    { name: 'MySQL', category: 'Backend i dane', icon: siMysql, color: '#5b93c7', description: 'Projektowanie tabel, relacje i zapytania SQL w aplikacjach z PHP.' },
+    { name: 'MariaDB', category: 'Backend i dane', icon: siMariadb, color: '#c0765a', description: 'Otwarta odmiana MySQL, na której działa baza w środowisku XAMPP.' },
+    { name: 'XAMPP', category: 'Backend i dane', icon: siXampp, color: '#fb7a24', description: 'Lokalny serwer Apache z PHP i MariaDB do budowania i testowania aplikacji.' },
+    { name: 'Vercel', category: 'Wdrożenia', icon: siVercel, color: '#ecebe8', description: 'Wdrożenia aplikacji React prosto z repozytorium.' },
+    { name: 'Netlify', category: 'Wdrożenia', icon: siNetlify, color: '#00c7b7', description: 'Hosting stron i aplikacji, m.in. Budget Planner App.' },
+    { name: 'Google Calendar API', category: 'Integracje', icon: siGooglecalendar, color: '#4285f4', description: 'Synchronizacja rezerwacji z Calendify do kalendarza Google.' },
+    { name: 'SMSAPI', category: 'Integracje', color: '#d8c3a5', description: 'Automatyczne przypomnienia SMS o wizytach w Calendify.' },
+    { name: 'MapLibre GL JS', category: 'Integracje', icon: siMaplibre, color: '#5b8ad6', description: 'Interaktywne mapy w przeglądarce.' },
+    { name: 'Cisco CCNAv7', category: 'Sieci', icon: siCisco, color: '#1ba0d7', description: 'Podstawy sieci komputerowych: adresacja, przełączanie i routing.' },
 ]
 
 export const educationDetails: { status: string; title: string; detail: string; notes?: string }[] = [
