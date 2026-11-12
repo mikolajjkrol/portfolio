@@ -34,11 +34,10 @@ export default function ProjectDetail() {
 
                 <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-5">
                     <div className="flex min-w-0 flex-wrap items-center gap-x-4 gap-y-2">
-                        <span className="grid size-10 shrink-0 place-items-center border border-rule font-serif text-xl text-accent">◫</span>
                         <h1 className="m-0 font-serif text-[clamp(28px,4vw,40px)] leading-[1.15] font-medium tracking-[-0.01em] break-words text-ink">
                             {title}
                         </h1>
-                        <Tag dot={live ? 'accent' : 'muted'}>{kind}</Tag>
+                        {/* <Tag dot={live ? 'accent' : 'muted'}>{kind}</Tag> */}
                     </div>
                     {url && (
                         <a

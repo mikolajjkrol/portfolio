@@ -1,6 +1,6 @@
 import { useScroll } from 'framer-motion'
-import { useMemo, useRef, useSyncExternalStore, type CSSProperties, type ReactNode } from 'react'
-import { SlideExitContext } from './slideExit'
+import { useMemo, useRef, type CSSProperties, type ReactNode } from 'react'
+import { SlideExitContext, usePinned } from './slideExit'
 
 type StickySlideProps = {
     children: ReactNode
@@ -17,19 +17,6 @@ const alignClass = {
     center: 'items-center',
     start: 'items-start',
     end: 'items-end',
-}
-
-// Must match the `md:motion-safe:` classes below.
-const pinQuery = '(min-width: 48rem) and (prefers-reduced-motion: no-preference)'
-
-function subscribe(onChange: () => void) {
-    const media = window.matchMedia(pinQuery)
-    media.addEventListener('change', onChange)
-    return () => media.removeEventListener('change', onChange)
-}
-
-function usePinned() {
-    return useSyncExternalStore(subscribe, () => window.matchMedia(pinQuery).matches, () => false)
 }
 
 // Pins its content in the viewport for a beat while scrolling, using plain `position: sticky`.

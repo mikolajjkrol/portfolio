@@ -26,14 +26,6 @@ import {
     type SimpleIcon,
 } from 'simple-icons'
 
-export const navLinks = [
-    { to: '/', label: 'Start' },
-    { to: '/projects', label: 'Projekty' },
-    { to: '/skills', label: 'Umiejętności i doświadczenie' },
-    { to: '/education', label: 'Edukacja' },
-    { to: '/contact', label: 'Kontakt' },
-]
-
 export type Project = {
     slug: string
     title: string

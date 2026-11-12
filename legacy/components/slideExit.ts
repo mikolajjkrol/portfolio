@@ -1,8 +1,29 @@
 import { useMotionValue, useTransform, type MotionValue } from 'framer-motion'
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useSyncExternalStore } from 'react'
 
 // Provided by StickySlide so elements inside it can fade out as the slide releases.
 export const SlideExitContext = createContext<{ progress: MotionValue<number>; vh: number; active: boolean } | null>(null)
+
+// Must match the `md:motion-safe:` classes used for pinning.
+const pinQuery = '(min-width: 48rem) and (prefers-reduced-motion: no-preference)'
+
+function subscribe(onChange: () => void) {
+    const media = window.matchMedia(pinQuery)
+    media.addEventListener('change', onChange)
+    return () => media.removeEventListener('change', onChange)
+}
+
+export function usePinned() {
+    return useSyncExternalStore(subscribe, () => window.matchMedia(pinQuery).matches, () => false)
+}
+
+// Scroll-linked pop-in for content being uncovered: rises, fades and scales up as `progress` goes from 0 to 1.
+export function useFlowIn(progress: MotionValue<number>) {
+    const y = useTransform(progress, [0, 1], [80, 0])
+    const opacity = useTransform(progress, [0.1, 0.9], [0, 1])
+    const scale = useTransform(progress, [0, 1], [0.96, 1])
+    return { y, opacity, scale }
+}
 
 // Exit timing, in vh of scroll measured from the moment the slide releases.
 const exitStart = -10 // first element starts fading just before the release, while still pinned

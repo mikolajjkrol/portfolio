@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..600&family=Lora:wght@400..600&display=swap');
+@import 'tailwindcss';
+
+/*
+  Design system
+  -------------
+  One dark surface, three text tones, one accent. No borders, no cards, no fills.
+  Hierarchy comes from type and space only.
+
+  Fonts
+    serif  Lora    h1 and h2 only (t-display, t-title)
+    sans   Inter   everything else
+
+  Text tones
+    ink    primary text
+    dim    secondary text (ledes, summaries)
+    faint  meta, dates, quiet labels
+
+  Space
+    Tailwind's 4px scale. Rhythm used across pages:
+    4   between a meta line and its title
+    6   between paragraphs (via .prose)
+    16  between entries in a list
+    24  between page sections
+*/
+
+@theme {
+  --font-serif: 'Lora', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #070707;
+  --color-ink: #ebe7e0;
+  --color-dim: #a39e95;
+  --color-faint: #66625c;
+  --color-accent: #c4a7e7;
+}
+
+html {
+  background: var(--color-bg);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* ---- Type roles. Each sets family, size, leading and tracking; colour is set where used. ---- */
+
+/* Page title (h1) */
+@utility t-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+/* Section heading (h2) */
+@utility t-title {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* Title of an entry in a list */
+@utility t-entry {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.1875rem;
+  line-height: 1.35;
+  letter-spacing: -0.014em;
+  text-wrap: balance;
+}
+
+/* Opening paragraph under a title */
+@utility t-lede {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(1.1875rem, 1.1rem + 0.3vw, 1.3125rem);
+  line-height: 1.55;
+  letter-spacing: -0.014em;
+  text-wrap: pretty;
+}
+
+/* Reading text */
+@utility t-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  letter-spacing: -0.008em;
+  text-wrap: pretty;
+}
+
+/* Sidebar links, small headings in sans */
+@utility t-ui {
+  font-family: var(--font-sans);
+  font-weight: 450;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  letter-spacing: -0.006em;
+}
+
+/* Meta lines: kind, tags, dates */
+@utility t-meta {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* ---- Links ---- */
+
+/* Inline link inside reading text */
+@utility link {
+  color: var(--color-ink);
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-faint);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 150ms, color 150ms;
+
+  &:hover {
+    text-decoration-color: var(--color-accent);
+  }
+}
+
+/* Quiet link: no underline until hover */
+@utility link-quiet {
+  color: inherit;
+  text-decoration: none;
+  transition: color 150ms;
+
+  &:hover {
+    color: var(--color-ink);
+  }
+}
+
+/* ---- Prose: spacing for running text ---- */
+@utility prose {
+  & > * + * {
+    margin-top: 1.5rem;
+  }
+  & ul {
+    padding-left: 1.25em;
+    list-style: none;
+  }
+  & li {
+    position: relative;
+  }
+  & li + li {
+    margin-top: 0.5rem;
+  }
+  & li::before {
+    content: '–';
+    position: absolute;
+    left: -1.25em;
+    color: var(--color-faint);
+  }
+}

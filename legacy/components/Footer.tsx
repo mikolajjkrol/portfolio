@@ -1,8 +1,9 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router'
 import { contactDetails, navLinks } from '../data'
 import { metaLabel } from '../styles'
+import { useFlowIn } from './slideExit'
 
 const container = 'mx-auto box-border max-w-[1200px] px-[clamp(20px,5vw,64px)]'
 
@@ -35,9 +36,7 @@ export default function Footer() {
 
     // 0 when the spacer starts entering the viewport, 1 when the page has fully lifted off the footer.
     const { scrollYProgress } = useScroll({ target: spacerRef, offset: ['start end', 'end end'] })
-    const y = useTransform(scrollYProgress, [0, 1], [80, 0])
-    const opacity = useTransform(scrollYProgress, [0.1, 0.9], [0, 1])
-    const scale = useTransform(scrollYProgress, [0, 1], [0.96, 1])
+    const flowIn = useFlowIn(scrollYProgress)
     const popOut = fits && !reduceMotion
 
     return (
@@ -46,7 +45,7 @@ export default function Footer() {
 
             <footer ref={footerRef} className={`${fits ? 'fixed inset-x-0 bottom-0 z-0' : 'relative'} bg-card`}>
                 <motion.div
-                    style={popOut ? { y, opacity, scale } : undefined}
+                    style={popOut ? flowIn : undefined}
                     className={`${container} grid origin-bottom gap-x-12 gap-y-10 pt-16 pb-14 sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)]`}
                 >
                     <div className="flex flex-col items-start gap-4">

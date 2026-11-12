@@ -1,38 +1,162 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 
-@theme {
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-serif: 'Lora', Georgia, serif;
+/*
+  Design system
+  -------------
+  Light, warm off-white surface. No borders (a faint one only on optional buttons).
+  Emphasis = black fill + white text. Accents are used sparingly; green is the rarest.
 
-  --color-page: #19191b;
-  --color-card: #222224;
-  --color-card-hover: #27272a;
-  --color-edge: #2e2e31;
-  --color-rule: #343437;
-  --color-timeline: #3a3a3e;
-  --color-ink: #f1f0ec;
-  --color-ink-soft: #ecebe8;
-  --color-muted: #a8a6a0;
-  --color-accent: #d8c3a5;
-  --color-on-accent: #1c1c1e;
+  Colours
+    bg        #F7F5F2   page background (not pure white)
+    surface   #E6E6E6   neutral light gray panels (hero showcase, stack grid)
+    ink       #111111   primary text, emphasis fill
+    dim       #6E6A64   secondary text
+    pink      #FA699E   main accent
+    pink-soft #FF9FC7   secondary accent
+    blush     #FFE7F0   tint
+    green     #4ADD82   attention, least used
+
+  Fonts
+    Outfit          everything (400 body, 500 captions, 600 buttons/labels, 700 card titles, 800 headings)
+    JetBrains Mono  small technical notes only
+*/
+
+@theme {
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-bg: #f7f5f2;
+  --color-surface: #e6e6e6;
+  --color-ink: #111111;
+  --color-dim: #6e6a64;
+  --color-pink: #fa699e;
+  --color-pink-soft: #ff9fc7;
+  --color-blush: #ffe7f0;
+  --color-green: #4add82;
 }
 
 html {
-  scroll-behavior: smooth;
+  background: var(--color-bg);
+  color-scheme: light;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   margin: 0;
-  background: var(--color-page);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-on-accent);
+  background: var(--color-blush);
+  color: var(--color-ink);
 }
 
-a:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 4px;
+:focus-visible {
+  outline: 2px solid var(--color-pink);
+  outline-offset: 3px;
+}
+
+/* ---- Buttons ---- */
+
+@utility btn {
+  display: inline-flex;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding-inline: 1.375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 150ms,
+    color 150ms,
+    border-color 150ms;
+}
+
+/* Important action: black fill, white text */
+@utility btn-primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+
+  &:hover {
+    background: #2a2a2a;
+  }
+}
+
+/* Optional action: only place a border is allowed */
+@utility btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+  box-shadow: inset 0 0 0 1px rgb(17 17 17 / 0.14);
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px rgb(17 17 17 / 0.35);
+  }
+}
+
+/* ---- Entrance animations. Set --delay inline to stagger. ---- */
+
+@keyframes slide-up {
+  from {
+    transform: translate3d(0, 110%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    transform: translate3d(0, -120%, 0);
+  }
+  to {
+    transform: none;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translate3d(-3rem, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Wrapper that hides a sliding child until it's in place. Extra bottom room keeps descenders (ę, ą, j) visible. */
+@utility reveal {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+@utility slide-up {
+  animation: slide-up 1000ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+@utility slide-down {
+  animation: slide-down 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+@utility slide-right {
+  animation: slide-right 1400ms cubic-bezier(0.22, 1, 0.36, 1) var(--delay, 0ms) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide-up,
+  .slide-down,
+  .slide-right {
+    animation: none;
+  }
 }

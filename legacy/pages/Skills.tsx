@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from 'react'
 import { technologies } from '../data'
-import { link, metaLabel, sectionLabel } from '../styles'
+import { metaLabel } from '../styles'
 
 const face = 'absolute inset-0 flex flex-col justify-between p-5 backface-hidden'
 const reveal = 'opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100'
@@ -20,7 +20,7 @@ export default function Skills() {
     }
 
     return (
-        <section className="flex flex-col gap-10 pt-28 pb-[88px]">
+        <section className="flex flex-col gap-10 pt-28 pb-22">
             <p className={`m-0 text-center ${metaLabel}`}>Stack, którego używam</p>
 
             {/* Breaks out of the centred content column to span the whole viewport. */}

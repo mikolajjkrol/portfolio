@@ -1,0 +1,81 @@
+/* Inter is loaded with its optical-size axis (opsz 14–32): small text gets the open "Text" cut,
+   large text automatically switches to the tighter, sharper "Display" cut. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..600;1,8..60,400&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+
+  /* Font roles. Change a role here and every place using it follows. */
+  --font-headline: var(--font-sans);
+  --font-body: var(--font-sans);
+  --font-subtext: var(--font-sans);
+  --font-nav: var(--font-sans);
+
+  /* Palette: black, white and three violets. */
+  --color-plum: #722273;
+  --color-grape: #482371;
+  --color-night: #2f0e56;
+
+  /* Surface and text tokens, built from the palette (the old pages use these). */
+  --color-page: #000000;
+  --color-card: #0e0a14;
+  --color-card-hover: #161020;
+  --color-edge: #211a2c;
+  --color-rule: #2b2337;
+  --color-timeline: #3a3046;
+  --color-ink: #ffffff;
+  --color-ink-soft: #f4f2f7;
+  --color-muted: #a49cae;
+  --color-accent: #c88bc9; /* light tint of plum: the raw #722273 is too dark to read as text on black */
+  --color-on-accent: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--color-page);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+/* Type styles: family + weight + spacing for each role. Size and colour are set where they're used. */
+@utility type-headline {
+  font-family: var(--font-headline);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-optical-sizing: auto;
+}
+
+@utility type-body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+@utility type-subtext {
+  font-family: var(--font-subtext);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@utility type-nav {
+  font-family: var(--font-nav);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
