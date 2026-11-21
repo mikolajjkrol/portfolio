@@ -3,6 +3,8 @@ import { useRef } from 'react'
 import Hero from '../components/Hero'
 import Projects from '../components/Projects'
 import Stack from '../components/Stack'
+import Services from '../components/Services'
+import Cta from '../components/Cta'
 
 export default function Home() {
     const nextRef = useRef<HTMLElement>(null)
@@ -27,6 +29,8 @@ export default function Home() {
 
             <Stack ref={nextRef} />
             <Projects />
+            <Services />
+            <Cta />
         </>
     )
 }

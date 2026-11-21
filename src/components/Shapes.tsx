@@ -1,18 +1,10 @@
 import { motion, useAnimate, useReducedMotion } from 'framer-motion'
 import { useRef, type ReactNode } from 'react'
+import { shapes } from './shapeList'
 
 // Small decorative shapes above the hero heading. Each one is different.
 // On hover a shape hops like a soft rubber toy: crouch, jump (stretch), fall, squash on landing, jiggle to rest.
-const shapes: ReactNode[] = [
-    <div className="size-8 rounded-full bg-pink" />,
-    <div className="size-8 rounded-[0.55rem] bg-pink-soft" />,
-    <div className="h-8 w-14 rounded-full bg-green" />,
-    <svg viewBox="0 0 32 32" className="size-9 overflow-visible">
-        <path d="M16 5 L28.5 27 H3.5 Z" className="fill-pink stroke-pink" strokeWidth="5" strokeLinejoin="round" />
-    </svg>,
-]
-
-function Shape({ children, index }: { children: ReactNode; index: number }) {
+export function Shape({ children, index, inView = false }: { children: ReactNode; index: number; inView?: boolean }) {
     const [scope, animate] = useAnimate<HTMLDivElement>()
     const busy = useRef(false)
     const reduceMotion = useReducedMotion()
@@ -37,7 +29,9 @@ function Shape({ children, index }: { children: ReactNode; index: number }) {
     return (
         <motion.div
             initial={reduceMotion ? false : { scale: 0, y: 10 }}
-            animate={{ scale: 1, y: 0 }}
+            {...(inView
+                ? { whileInView: { scale: 1, y: 0 }, viewport: { once: true, amount: 0.6 } }
+                : { animate: { scale: 1, y: 0 } })}
             transition={{ type: 'spring', stiffness: 420, damping: 16, delay: 0.1 + index * 0.08 }}
             style={{ originY: 1 }}
         >

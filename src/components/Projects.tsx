@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, type Variants } from 'framer-motion'
 import { useRef, useState } from 'react'
-import { host, projects, type Project } from '../data'
+import { Link } from 'react-router'
+import { host, projectPath, projects, type Project } from '../data'
 import ShapeIcon, { type ShapeKind } from './ShapeIcon'
 
 // Only real, live websites and apps that have a screenshot.
@@ -56,14 +57,17 @@ function Details({ project }: { project: Project }) {
             <div className="flex flex-col gap-6 pt-3 pb-6 sm:pl-[4.75rem]">
                 <p className="m-0 max-w-[60ch] text-[1rem] leading-relaxed">{project.about[0]}</p>
 
-                {project.url && (
-                    <div className="flex flex-wrap items-center gap-4">
-                        <a href={project.url} target="_blank" rel="noreferrer" className="btn btn-primary">
+                <div className="flex flex-wrap items-center gap-3">
+                    <Link to={projectPath(project)} className="btn btn-primary">
+                        Więcej o projekcie
+                    </Link>
+                    {project.url && (
+                        <a href={project.url} target="_blank" rel="noreferrer" className="btn btn-secondary">
                             Zobacz stronę
                         </a>
-                        <span className="font-mono text-[0.75rem] text-dim">{host(project.url)}</span>
-                    </div>
-                )}
+                    )}
+                    {project.url && <span className="font-mono text-[0.75rem] text-dim">{host(project.url)}</span>}
+                </div>
             </div>
         </motion.div>
     )
@@ -95,11 +99,11 @@ export default function Projects() {
             >
                 <motion.h2
                     variants={rise}
-                    className="m-0 text-[clamp(1.75rem,1.4rem+1.4vw,2.5rem)] leading-[1.1] font-normal tracking-[-0.025em]"
+                    className="m-0 text-center text-[clamp(1.75rem,1.4rem+1.4vw,2.5rem)] leading-[1.1] font-normal tracking-[-0.025em]"
                 >
                     Projekty
                 </motion.h2>
-                <motion.p variants={rise} className="mt-4 mb-0 max-w-[44ch] text-[1.0625rem] leading-relaxed text-dim">
+                <motion.p variants={rise} className="mx-auto mt-4 mb-0 max-w-[44ch] text-center text-[1.0625rem] leading-relaxed text-balance text-dim">
                     Własne produkty i strony dla lokalnych firm. Kliknij projekt, żeby zobaczyć szczegóły.
                 </motion.p>
 

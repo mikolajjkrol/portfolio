@@ -37,6 +37,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   background: var(--color-bg);
   color-scheme: light;
   -webkit-font-smoothing: antialiased;
@@ -154,6 +155,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .slide-up,
   .slide-down,
   .slide-right {

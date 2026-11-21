@@ -1,10 +1,10 @@
 import type { CSSProperties } from 'react'
 
 const links = [
-    { label: 'Projekty', href: '#projekty' },
-    { label: 'Usługi', href: '#uslugi' },
-    { label: 'Proces', href: '#proces' },
-    { label: 'O mnie', href: '#o-mnie' },
+    { label: 'O mnie', href: '/#o-mnie' },
+    { label: 'Projekty', href: '/#projekty' },
+    { label: 'Usługi', href: '/#uslugi' },
+    { label: 'Proces', href: '/#proces' },
 ]
 
 const delay = (ms: number) => ({ '--delay': `${ms}ms` }) as CSSProperties

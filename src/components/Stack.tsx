@@ -197,7 +197,7 @@ export default function Stack({ ref }: { ref?: Ref<HTMLElement> }) {
     <section
       ref={ref}
       id="o-mnie"
-      className="relative z-10 flex min-h-dvh items-center bg-bg py-24 shadow-[0_-24px_60px_-12px_rgb(17_17_17/0.18),0_-2px_8px_-2px_rgb(17_17_17/0.06)] sm:py-32"
+      className="relative z-10 flex min-h-dvh items-center rounded-t-2xl bg-bg py-24 shadow-[0_-24px_60px_-12px_rgb(17_17_17/0.18),0_-2px_8px_-2px_rgb(17_17_17/0.06)] sm:py-32"
     >
       <motion.div
         initial="hidden"

@@ -246,5 +246,36 @@ export const contactDetails = [
 export const contactFacts = [
     { label: 'Status', value: 'Dostępny do zleceń freelance' },
     { label: 'Lokalizacja', value: 'Lubartów, Polska' },
-    { label: 'Języki', value: 'polski, angielski (B2/C1)' },
+]
+
+export type Service = {
+    id: string
+    title: string
+    lead: string
+    includes: string[]
+    shape: 'circle' | 'square' | 'pill'
+}
+
+export const services: Service[] = [
+    {
+        id: 'strony',
+        title: 'Strony dla firm',
+        lead: 'Szybka, czytelna strona, która prowadzi klienta prosto do telefonu, formularza albo wyceny. Bez szablonów, zaprojektowana pod Twoją branżę.',
+        includes: ['Projekt i wykonanie od zera', 'Wersja na telefon i komputer', 'Podstawy SEO i szybkie ładowanie', 'Domena, hosting i wdrożenie'],
+        shape: 'circle',
+    },
+    {
+        id: 'aplikacje',
+        title: 'Aplikacje webowe',
+        lead: 'Systemy, z których firma korzysta na co dzień: rezerwacje, panele klienta, harmonogramy. Od bazy danych po interfejs.',
+        includes: ['Panel administracyjny', 'Logowanie i konta użytkowników', 'Baza danych i API', 'Rozwój po starcie'],
+        shape: 'square',
+    },
+    {
+        id: 'automatyzacje',
+        title: 'Automatyzacje i integracje',
+        lead: 'Powtarzalna praca przejęta przez skrypt. Łączę narzędzia, których już używasz, i porządkuję dane.',
+        includes: ['Integracje z Google Calendar, SMS i innymi API', 'Automatyzacja sklepów PrestaShop', 'Przetwarzanie i eksport danych', 'Skrypty w Pythonie'],
+        shape: 'pill',
+    },
 ]
